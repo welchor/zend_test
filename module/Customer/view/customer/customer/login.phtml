@@ -1,0 +1,114 @@
+<div class="col-xs-6">
+<?php
+
+$login = $this->Login;
+$login->setAttribute('action', $this->url('customer', array('action' => 'login')));
+$login->setAttribute('class', 'form-horizontal');
+$login->get('submit')->setAttribute('class', 'btn btn-primary');
+$login->prepare();
+
+echo $this->form()->openTag($login);
+?>
+<div class="col-sm-12 ">
+	<?php
+		if ($errorMessage == '') {
+	} else {
+	?>
+		<br />
+		<div class="alert alert-danger col-sm-8  marginBottomNone"><center><span class="textCenter"><?php echo $errorMessage; ?></span></center></div>
+		<div class="clearfix"></div>
+	<?php
+	}
+	?>
+    <h3>Login</h3>
+</div>
+<div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-6">
+	    <?php echo $this->formRow($login->get('email')); ?>
+    </div>
+</div>
+ <div class="form-group">
+    <label for="loginpassword" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-6">
+	    <?php echo $this->formRow($login->get('password')); ?>
+	</div>
+</div>
+ <div class="form-group">
+	<div class="col-sm-offset-2 col-sm-10">
+      <?php echo $this->formSubmit($login->get('submit')); ?>
+    </div>
+ </div>
+<?php
+echo $this->form()->closeTag();
+
+$registration = $this->Registration;
+$registration->setAttribute('action', $this->url('customer', array('action' => 'registration')));
+$registration->setAttribute('class', 'form-horizontal');
+$registration->get('register')->setAttribute('class', 'btn btn-primary');
+$registration->prepare();
+
+?>
+</div>
+
+<div class="col-xs-6">
+<div class="col-offset-sm-4 col-sm-8">
+    <h3>Register</h3>
+</div>
+
+<div class="clearfix"></div>
+<?php
+echo $this->form()->openTag($registration);
+?>
+<div class="form-group">
+    <label for="firstname" class="col-sm-4 control-label">First Name</label>
+    <div class="col-sm-6">
+	    <?php echo $this->formRow($registration->get('first_name')); ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="lastname" class="col-sm-4 control-label">Last Name</label>
+    <div class="col-sm-6">
+		<?php echo $this->formRow($registration->get('last_name')); ?>
+    </div>
+ </div>
+<div class="form-group">
+	<label for="registrationemail" class="col-sm-4 control-label">Email</label>
+    <div class="col-sm-6">
+		<?php echo $this->formRow($registration->get('email')); ?>
+    </div>
+ </div>
+<div class="form-group">
+	<label for="companyname" class="col-sm-4 control-label">Company Name</label>
+    <div class="col-sm-6">
+		<?php echo $this->formRow($registration->get('company_name')); ?>
+    </div>
+</div>
+ <div class="form-group">
+	<label for="registrationpassword" class="col-sm-4 control-label">Password</label>
+    <div class="col-sm-6">
+		<?php echo $this->formRow($registration->get('password')); ?>
+    </div>
+ </div>
+ <div class="form-group">
+	<label for="confirmpassword" class="col-sm-4 control-label">Confirm Password</label>
+    <div class="col-sm-6">
+		<?php echo $this->formRow($registration->get('confirmpassword')); ?>
+    </div>
+ </div>
+ <div class="form-group">
+	<label for="phone" class="col-sm-4 control-label">Phone</label>
+    <div class="col-sm-6">
+		<?php echo $this->formRow($registration->get('phone')); ?>
+    </div>
+ </div>
+ <div class="form-group">
+	<div class="col-sm-offset-4 col-sm-8">
+      <?php echo $this->formSubmit($registration->get('register')); ?>
+    </div>
+ </div>
+<?php
+echo $this->form()->closeTag();
+?>
+</div>

@@ -1,0 +1,98 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+$title = 'Product Details';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php 
+	foreach ($products as $product) {
+?>
+	<div class="col-xs-12">
+
+		<div class="col-xs-4">
+			<a href="<?php echo $this->url('product', array('action'=>'view', 'id' => $product->product_id)) ?>">
+				<img class="largerImg" src="<?php echo $this->basePath($product->product_image);?>">
+			</a>
+		</div>
+
+		<div class="col-xs-8">
+			<div class="col-xs-12">
+				<div class="col-xs-4">
+					<label> Product Name: </label> 
+				</div>
+				<div class="col-xs-8">
+					<span id="productname"> <?php echo $product->product_name; ?></span>
+					<input type="hidden" id="productimg" value="<?php echo $product->product_image; ?>">
+				</div>
+				
+			</div>
+			
+			<div class="col-sm-12">
+
+				<div class="col-sm-4">
+					<label> Product Description: </label>
+				</div>
+				<div class="col-sm-8">
+					<span id="productdescription" > <?php echo $product->product_desc; ?></span>
+				</div>
+				 
+			</div>
+
+			<div class="col-xs-12">
+
+				<div class="col-sm-4">
+					<label> Unit Price: </label>
+				</div>
+				<div class="col-sm-8">
+					<span class="bold"> <?php echo "$" . $product->price; ?></span>
+					<input id="quantity" value="<?php echo $product->stock_qty; ?>" hidden>
+					
+				</div>
+
+				<div class="clearfix"></div>
+
+			<form method="POST" action="/product/addcart">
+
+				<input type="hidden" name="productimg" value="<?php echo $product->product_thumbnail; ?>" hidden>
+				<input type="hidden" name="productname" value="<?php echo $product->product_name; ?>" hidden>
+				<input type="hidden" name="productdescription" value="<?php echo $product->product_desc; ?>" hidden>
+				<input id="unitprice" name="unitprice" value="<?php echo $product->price; ?>" hidden>
+				<input id="product_id" name="product_id" value="<?php echo $product->product_id; ?>" hidden>
+				<input id="product_weight" name="product_weight" value="<?php echo $product->weight; ?>" hidden>
+
+				<input type="hidden" value="<?php echo $product->product_image; ?>">
+				<div class="col-sm-4">
+					<label> Quantity</label>
+				</div>
+				<div class="col-xs-8">
+					<input type="number" id="priceQuantity" value="1" name="priceQuantity" min="1" max="<?php echo $product->stock_qty; ?>">
+				</div>
+
+				<div class="clearfix"></div>
+
+				<div class="col-sm-4">
+					<label> Price</label>
+				</div>
+				<div class="col-sm-8">
+					<?php $total = ($product->price * 1); ?>
+					<span class="totalquantity bold"><?php echo "$" . $total .".00"; ?></span>
+					<input type="hidden" id="totalpriceQuantity" class="totalquantity" value="<?php echo $total; ?>" name="totalpriceQuantity">
+				</div>
+				 
+			</div>
+			<div class="clearfix"></div>
+			<div class="spacer"></div>
+				<div class="col-sm-4">
+					
+				</div>
+				<div class="col-sm-4">
+					<button id="addCart" class="btn btn-success pull-right form-control">Add</button>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+<?php		
+	}
+?>

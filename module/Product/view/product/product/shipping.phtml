@@ -1,0 +1,84 @@
+
+<div class="col-sm-6 col-offset-sm-3">
+<div class="col-sm-12">
+    <h3>Shipping</h3>
+</div>
+
+<div class="clearfix"></div>
+<?php
+$Shipping = $this->Shipping;
+$Shipping->setAttribute('action', $this->url('product', array('action' => 'shipping')));
+$Shipping->setAttribute('class', 'form-horizontal');
+$Shipping->get('continue')->setAttribute('class', 'form-control btn btn-success');
+$Shipping->get('total_weight')->setAttribute('value', $totalweight);
+$Shipping->get('sub_total')->setAttribute('value', $subtotal);
+$Shipping->prepare();
+echo $this->form()->openTag($Shipping);
+?>
+<div class="form-group">
+    <label for="firstname" class="col-sm-4 control-label">First Name</label>
+    <div class="col-sm-6">
+	    <?php echo $this->formRow($Shipping->get('first_name')); ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="address1" class="col-sm-4 control-label">Address 1</label>
+    <div class="col-sm-6">
+		<?php echo $this->formRow($Shipping->get('shipping_address1')); ?>
+    </div>
+ </div>
+<div class="form-group">
+	<label for="address2" class="col-sm-4 control-label">Address 2</label>
+    <div class="col-sm-6">
+		<?php echo $this->formRow($Shipping->get('shipping_address2')); ?>
+    </div>
+ </div>
+<div class="form-group">
+	<label for="address3" class="col-sm-4 control-label">Address 3</label>
+    <div class="col-sm-6">
+		<?php echo $this->formRow($Shipping->get('shipping_address3')); ?>
+    </div>
+</div>
+ <div class="form-group">
+	<label for="city" class="col-sm-4 control-label">City</label>
+    <div class="col-sm-6">
+		<?php echo $this->formRow($Shipping->get('shipping_city')); ?>
+    </div>
+ </div>
+ <div class="form-group">
+	<label for="state" class="col-sm-4 control-label">State</label>
+    <div class="col-sm-6">
+		<?php echo $this->formRow($Shipping->get('shipping_state')); ?>
+    </div>
+ </div>
+ <div class="form-group">
+	<label for="country" class="col-sm-4 control-label">Country</label>
+    <div class="col-sm-6">
+		<?php echo $this->formRow($Shipping->get('shipping_country')); ?>
+		<?php echo $this->formRow($Shipping->get('shipping_mehod')); ?>
+		<?php echo $this->formRow($Shipping->get('shipping_total')); ?>
+		<?php echo $this->formRow($Shipping->get('total_weight')); ?>
+		<?php echo $this->formRow($Shipping->get('sub_total')); ?>
+    </div>
+ 
+ </div>
+ <div class="col-sm-offset-2">
+ 	  <div class="radio">
+	     <label><input type="radio" class="method" shippingmethod="ground" name="1" value="<?php echo $ground; ?>" checked><span class="shippingtype">Ground Shipping&nbsp;&nbsp;&nbsp;  </span><?php echo "$ ".number_format((float)$ground, 2, '.', ''); ?></label>
+	 </div>
+	 <div class="radio">
+	     <label><input type="radio" class="method" name="1" shippingmethod = "expedited" value="<?php echo $expedited; ?>"><span class="shippingtype">Expedited Shipping</span><?php echo "$ ".number_format((float)$expedited, 2, '.', ''); ?></label>
+	 </div>
+</div>
+ <div class="spacer"></div>
+
+ <div class="form-group">
+	<div class="col-sm-offset-4 col-sm-6">
+      <?php echo $this->formSubmit($Shipping->get('continue')); ?>
+    </div>
+ </div>
+<?php
+echo $this->form()->closeTag();
+?>
+</div>
